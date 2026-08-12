@@ -21,6 +21,11 @@ echo "Publishing dashboard..."
 install -d -m 755 -o root -g root "$web_root"
 install -m 644 "${repository}/site/index.html" "${web_root}/index.html"
 install -m 644 "${repository}/site/home.css" "${web_root}/home.css"
+install -m 644 "${repository}/site/manifest.webmanifest" "${web_root}/manifest.webmanifest"
+install -m 644 "${repository}/site/sw.js" "${web_root}/sw.js"
+install -m 644 "${repository}/site/icon.svg" "${web_root}/icon.svg"
+install -m 644 "${repository}/site/icon-192.png" "${web_root}/icon-192.png"
+install -m 644 "${repository}/site/icon-512.png" "${web_root}/icon-512.png"
 
 echo "Installing shared Nginx configuration..."
 install -m 644 "${repository}/deploy/nginx/pi-server" /etc/nginx/sites-available/pi-server
@@ -32,4 +37,3 @@ fi
 nginx -t
 systemctl restart nginx
 echo "Dashboard and shared routing deployed successfully."
-
