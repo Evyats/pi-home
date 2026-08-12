@@ -8,3 +8,11 @@ apps own their services and static subdirectories.
 
 The dashboard is an installable root-scoped PWA. Its service worker explicitly
 ignores application subpaths so each app remains controlled by its own PWA.
+
+## Deploy
+
+After pushing changes to `main`, run on the Pi:
+
+```bash
+sudo /opt/pi-home/app/deploy.sh
+```
