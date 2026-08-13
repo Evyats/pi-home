@@ -1,5 +1,5 @@
-const CACHE = 'pi-home-v2'
-const APP_SHELL = ['/', '/home.css', '/home.js', '/manifest.webmanifest', '/icon-192.png', '/icon-512.png']
+const CACHE = 'pi-home-v3'
+const APP_SHELL = ['/', '/home.css?v=3', '/home.js?v=3', '/manifest.webmanifest', '/icon-192.png', '/icon-512.png']
 const APP_PATHS = ['/todo/', '/flashcards/']
 
 self.addEventListener('install', (event) => {
