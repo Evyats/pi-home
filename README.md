@@ -8,6 +8,8 @@ apps own their services and static subdirectories.
 
 The dashboard is an installable root-scoped PWA. Its service worker explicitly
 ignores application subpaths so each app remains controlled by its own PWA.
+The Manage apps screen controls dashboard order and visibility. Preferences are
+stored locally in each browser, so phone and computer layouts can differ.
 
 ## First and later local runs
 

@@ -12,27 +12,42 @@
   </head>
   <body>
     <main>
-      <p class="eyebrow">PRIVATE HOME SERVER</p>
-      <h1>Good to see you.</h1>
-      <p class="intro">Choose an app and get to it.</p>
+      <section id="home-screen">
+        <header>
+          <div>
+            <p class="eyebrow">PRIVATE HOME SERVER</p>
+            <h1>Good to see you.</h1>
+            <p class="intro">Choose an app and get to it.</p>
+          </div>
+          <button class="icon-button" id="open-settings" type="button" aria-label="Manage apps" title="Manage apps">&#9881;</button>
+        </header>
+        <nav id="app-menu" aria-label="Applications"></nav>
+        <p class="empty-message" id="empty-menu" hidden>No apps are visible. Choose some in Manage apps.</p>
+      </section>
 
-      <nav aria-label="Applications">
-        <a href="/todo/">
-          <span class="icon blue">✓</span>
-          <span><strong>Todo</strong><small>Capture and finish tasks</small></span>
-          <b aria-hidden="true">→</b>
-        </a>
-        <a href="/flashcards/">
-          <span class="icon orange">A</span>
-          <span><strong>Flashcards</strong><small>Create cards and study</small></span>
-          <b aria-hidden="true">→</b>
-        </a>
-      </nav>
+      <section id="settings-screen" hidden>
+        <header>
+          <div>
+            <p class="eyebrow">PI HOME</p>
+            <h1>Manage apps</h1>
+            <p class="intro">Choose what appears and in which order.</p>
+          </div>
+          <button class="icon-button" id="close-settings" type="button" aria-label="Back to home" title="Back to home">&#8592;</button>
+        </header>
+
+        <section class="app-section" aria-labelledby="visible-title">
+          <h2 id="visible-title">Visible apps</h2>
+          <div class="manage-list" id="visible-apps"></div>
+          <p class="section-empty" id="visible-empty" hidden>No visible apps.</p>
+        </section>
+
+        <section class="app-section" aria-labelledby="hidden-title">
+          <h2 id="hidden-title">Hidden apps</h2>
+          <div class="manage-list" id="hidden-apps"></div>
+          <p class="section-empty" id="hidden-empty" hidden>No hidden apps.</p>
+        </section>
+      </section>
     </main>
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js', { scope: '/' }))
-      }
-    </script>
+    <script src="/home.js"></script>
   </body>
 </html>
