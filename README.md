@@ -2,9 +2,9 @@
 
 Static dashboard and shared Nginx entrance for the private Raspberry Pi apps.
 
-It serves the dashboard at `/`, Todo at `/todo/`, and Flashcards at
-`/flashcards/`. This repository owns the shared Nginx server block; individual
-apps own their services and static subdirectories.
+It serves the dashboard at `/`, Todo at `/todo/`, Flashcards at `/flashcards/`,
+and Geography at `/geography/`. This repository owns the shared Nginx server
+block; individual apps own their services and static subdirectories.
 
 The dashboard is an installable root-scoped PWA. Its service worker explicitly
 ignores application subpaths so each app remains controlled by its own PWA.
@@ -16,7 +16,7 @@ stored locally in each browser, so phone and computer layouts can differ.
 Pi Home has no dependencies to install. Serve it from the `site` directory:
 
 ```powershell
-cd site
+cd pi-home\site
 python -m http.server 5173 --bind 0.0.0.0
 ```
 

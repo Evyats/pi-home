@@ -1,6 +1,6 @@
-const CACHE = 'pi-home-v3'
-const APP_SHELL = ['/', '/home.css?v=3', '/home.js?v=3', '/manifest.webmanifest', '/icon-192.png', '/icon-512.png']
-const APP_PATHS = ['/todo/', '/flashcards/']
+const CACHE = 'pi-home-v4'
+const APP_SHELL = ['/', '/home.css?v=4', '/home.js?v=4', '/manifest.webmanifest', '/icon-192.png', '/icon-512.png']
+const APP_PATHS = ['/todo/', '/flashcards/', '/geography/']
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(APP_SHELL)))

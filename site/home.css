@@ -15,6 +15,7 @@ h2 { margin: 0 0 12px; font-size: 16px; color: #b8c6ce; }
 .app-icon.small { flex-basis: 42px; width: 42px; height: 42px; border-radius: 11px; font-size: 18px; }
 .blue { color: #d8eaff; background: #1c5d99; }
 .orange { color: #fff0e3; background: #a8492c; }
+.green { color: #e6fff4; background: #26705a; }
 .app-copy { display: grid; flex: 1; gap: 5px; }
 strong { font-size: 18px; }
 small { color: #9eacb5; font-size: 14px; }

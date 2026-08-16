@@ -40,8 +40,15 @@ server {
         try_files $uri $uri/ /flashcards/index.html;
     }
 
+    location = /geography {
+        return 301 /geography/;
+    }
+
+    location /geography/ {
+        try_files $uri $uri/ /geography/index.html;
+    }
+
     location / {
         try_files $uri $uri/ /index.html;
     }
 }
-
