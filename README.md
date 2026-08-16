@@ -3,7 +3,7 @@
 Static dashboard and shared Nginx entrance for the private Raspberry Pi apps.
 
 It serves the dashboard at `/`, Todo at `/todo/`, Flashcards at `/flashcards/`,
-and Geography at `/geography/`. This repository owns the shared Nginx server
+Geography at `/geography/`, and Gym at `/gym/`. This repository owns the shared Nginx server
 block; individual apps own their services and static subdirectories.
 
 The dashboard is an installable root-scoped PWA. Its service worker explicitly

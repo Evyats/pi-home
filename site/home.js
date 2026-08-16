@@ -2,6 +2,7 @@ const APPS = [
   { id: 'todo', name: 'Todo', description: 'Capture and finish tasks', href: '/todo/', icon: '&#10003;', color: 'blue' },
   { id: 'flashcards', name: 'Flashcards', description: 'Create cards and study', href: '/flashcards/', icon: 'A', color: 'orange' },
   { id: 'geography', name: 'Geography', description: 'Learn where Israeli cities are', href: '/geography/', icon: '&#9906;', color: 'green' },
+  { id: 'gym', name: 'Gym', description: 'Plan workouts and track weight', href: '/gym/', icon: '&#9878;', color: 'amber' },
 ]
 
 const STORAGE_KEY = 'pi-home-app-preferences'
