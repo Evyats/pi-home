@@ -7,7 +7,7 @@
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="icon" href="/icon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/icon-192.png" />
-    <link rel="stylesheet" href="/home.css?v=5" />
+    <link rel="stylesheet" href="/home.css?v=6" />
     <title>Pi Home</title>
   </head>
   <body>
@@ -23,6 +23,32 @@
         </header>
         <nav id="app-menu" aria-label="Applications"></nav>
         <p class="empty-message" id="empty-menu" hidden>No apps are visible. Choose some in Manage apps.</p>
+
+        <section class="server-panel" aria-labelledby="server-title">
+          <div class="server-heading">
+            <div>
+              <p class="eyebrow server-eyebrow">SERVER</p>
+              <div class="server-title-line">
+                <span class="health-dot pending" id="server-health-dot" aria-hidden="true"></span>
+                <h2 id="server-title">Checking the Pi</h2>
+              </div>
+            </div>
+            <button class="refresh-button" id="refresh-status" type="button" aria-label="Reload server status" title="Reload server status">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6v5h-5M4 18v-5h5M6.1 9a7 7 0 0 1 11.4-2.4L20 9M4 15l2.5 2.4A7 7 0 0 0 17.9 15" /></svg>
+            </button>
+          </div>
+
+          <p class="server-summary" id="server-summary" role="status" aria-live="polite">Loading the latest snapshot…</p>
+          <div class="metric-strip" id="server-metrics" hidden></div>
+
+          <details class="server-details" id="server-details">
+            <summary>
+              <span>Apps and activity</span>
+              <span class="details-hint" id="details-hint">Deployment, data and backups</span>
+            </summary>
+            <div class="app-status-list" id="app-status-list"></div>
+          </details>
+        </section>
       </section>
 
       <section id="settings-screen" hidden>
@@ -48,6 +74,6 @@
         </section>
       </section>
     </main>
-    <script src="/home.js?v=5"></script>
+    <script src="/home.js?v=6"></script>
   </body>
 </html>

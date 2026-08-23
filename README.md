@@ -11,6 +11,11 @@ ignores application subpaths so each app remains controlled by its own PWA.
 The Manage apps screen controls dashboard order and visibility. Preferences are
 stored locally in each browser, so phone and computer layouts can differ.
 
+The home screen also reads `/server-status.json`, a static snapshot refreshed
+by `pi-home-status.timer` every five minutes. It shows Pi health, resource use,
+app services, update checks and attempts, deployed commits, database activity,
+and backups without adding a dashboard backend.
+
 ## First and later local runs
 
 Pi Home has no dependencies to install. Serve it from the `site` directory:
@@ -43,4 +48,6 @@ timer. Inspect it afterward with:
 ```bash
 systemctl list-timers pi-home-update.timer
 sudo journalctl -u pi-home-update.service -n 50 --no-pager
+systemctl list-timers pi-home-status.timer
+sudo journalctl -u pi-home-status.service -n 50 --no-pager
 ```

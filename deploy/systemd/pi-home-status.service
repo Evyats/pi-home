@@ -1,0 +1,13 @@
+[Unit]
+Description=Refresh the static Pi Home server status
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /opt/pi-home/app/deploy/status/collect_status.py
+Nice=10
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/www/pi-server

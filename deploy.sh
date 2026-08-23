@@ -61,6 +61,8 @@ systemctl restart nginx
 echo "Refreshing update timer..."
 install -m 644 "${repository}/deploy/systemd/pi-home-update.service" /etc/systemd/system/
 install -m 644 "${repository}/deploy/systemd/pi-home-update.timer" /etc/systemd/system/
+install -m 644 "${repository}/deploy/systemd/pi-home-status.service" /etc/systemd/system/
+install -m 644 "${repository}/deploy/systemd/pi-home-status.timer" /etc/systemd/system/
 systemctl daemon-reload
 systemctl enable --now pi-home-update.timer
 
@@ -69,4 +71,6 @@ marker_temp="${deployment_marker}.tmp"
 printf '%s\n' "$deployed_sha" >"$marker_temp"
 chmod 644 "$marker_temp"
 mv -- "$marker_temp" "$deployment_marker"
+systemctl enable --now pi-home-status.timer
+systemctl start pi-home-status.service
 echo "Dashboard and shared routing deployed successfully."

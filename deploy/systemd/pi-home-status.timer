@@ -1,0 +1,11 @@
+[Unit]
+Description=Refresh Pi Home server status every five minutes
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=5min
+RandomizedDelaySec=20s
+Unit=pi-home-status.service
+
+[Install]
+WantedBy=timers.target

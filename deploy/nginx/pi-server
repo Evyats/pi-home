@@ -6,6 +6,11 @@ server {
     root /var/www/pi-server;
     index index.html;
 
+    location = /server-status.json {
+        add_header Cache-Control "no-store" always;
+        try_files /server-status.json =503;
+    }
+
     location = /todo {
         return 301 /todo/;
     }

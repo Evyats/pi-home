@@ -29,6 +29,13 @@ jobs:
           test -f site/manifest.webmanifest
           test -f site/sw.js
           test -f deploy/nginx/pi-server
+          test -f deploy/status/collect_status.py
+          test -f deploy/systemd/pi-home-status.service
+          test -f deploy/systemd/pi-home-status.timer
+          node --check site/home.js
+          node --check site/sw.js
+          python3 -m py_compile deploy/status/collect_status.py
+          bash -n deploy.sh deploy/update/check-update.sh
 
       - name: Publish deploy branch
         env:
