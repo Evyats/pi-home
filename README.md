@@ -26,8 +26,21 @@ Python through Windows Firewall on private networks if prompted.
 
 ## Deploy
 
-After pushing changes to `main`, run on the Pi:
+Push changes to `main`, then wait for the
+[GitHub Actions validation](https://github.com/Evyats/pi-home/actions) to turn
+green. The Pi checks the successful `deploy` branch every five minutes and
+deploys new versions automatically. Manual deployment remains available with:
 
 ```bash
 sudo /opt/pi-home/app/deploy.sh
+```
+
+The first deployment containing the pipeline and timer must be run manually.
+Because older Pi Home installations track `main`, run the command once to pull
+this setup and a second time to move the checkout to `deploy` and install the
+timer. Inspect it afterward with:
+
+```bash
+systemctl list-timers pi-home-update.timer
+sudo journalctl -u pi-home-update.service -n 50 --no-pager
 ```

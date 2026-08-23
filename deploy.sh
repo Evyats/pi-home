@@ -3,10 +3,19 @@ set -euo pipefail
 
 readonly repository="/opt/pi-home/app"
 readonly web_root="/var/www/pi-server"
+readonly state_directory="/var/lib/pi-home"
+readonly deployment_marker="${state_directory}/last-deployed-sha"
+readonly deployment_lock="/run/lock/pi-home-deploy.lock"
 
 if (( EUID != 0 )); then
     echo "Run this script with sudo." >&2
     exit 1
+fi
+
+exec 9>"$deployment_lock"
+if ! flock --nonblock 9; then
+    echo "Another Pi Home deployment is already running; skipping." >&2
+    exit 0
 fi
 
 if [[ ! -d "$repository" ]]; then
@@ -14,8 +23,19 @@ if [[ ! -d "$repository" ]]; then
     exit 1
 fi
 
-echo "Pulling dashboard and server configuration..."
-runuser -u pi-home -- git -C "$repository" pull --ff-only origin main
+current_branch="$(runuser -u pi-home -- git -C "$repository" branch --show-current)"
+if [[ "$current_branch" == "main" ]]; then
+    echo "Moving the Pi Home checkout to the ready-to-run deploy branch..."
+    runuser -u pi-home -- git -C "$repository" fetch origin deploy
+    runuser -u pi-home -- git -C "$repository" switch --create deploy --track origin/deploy
+elif [[ "$current_branch" != "deploy" ]]; then
+    echo "Expected the repository to be on deploy (or legacy main), found: $current_branch" >&2
+    exit 1
+fi
+
+echo "Pulling ready-to-run dashboard and server configuration..."
+runuser -u pi-home -- git -C "$repository" pull --ff-only origin deploy
+install -d -m 755 -o pi-home -g pi-home "$state_directory"
 
 echo "Publishing dashboard..."
 install -d -m 755 -o root -g root "$web_root"
@@ -37,4 +57,16 @@ fi
 
 nginx -t
 systemctl restart nginx
+
+echo "Refreshing update timer..."
+install -m 644 "${repository}/deploy/systemd/pi-home-update.service" /etc/systemd/system/
+install -m 644 "${repository}/deploy/systemd/pi-home-update.timer" /etc/systemd/system/
+systemctl daemon-reload
+systemctl enable --now pi-home-update.timer
+
+deployed_sha="$(runuser -u pi-home -- git -C "$repository" rev-parse HEAD)"
+marker_temp="${deployment_marker}.tmp"
+printf '%s\n' "$deployed_sha" >"$marker_temp"
+chmod 644 "$marker_temp"
+mv -- "$marker_temp" "$deployment_marker"
 echo "Dashboard and shared routing deployed successfully."
