@@ -64,10 +64,10 @@ button { font: inherit; }
 .server-details summary > span:first-child { font-size: 14px; font-weight: 700; }
 .details-hint { flex: 1; color: #71838e; font-size: 12px; text-align: right; }
 .app-status-list { border-top: 1px solid #26343d; }
-.app-status-row { display: grid; grid-template-columns: 135px 1fr; gap: 18px; padding: 16px 0; }
+.app-status-row { display: grid; grid-template-columns: 190px 1fr; gap: 18px; padding: 16px 0; }
 .app-status-row + .app-status-row { border-top: 1px solid #26343d; }
 .app-status-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-.app-status-heading strong { min-width: 0; overflow: hidden; font-size: 14px; text-overflow: ellipsis; white-space: nowrap; }
+.app-status-heading strong { min-width: 0; font-size: 14px; overflow-wrap: anywhere; }
 .status-badge { flex: 0 0 auto; border-radius: 999px; padding: 4px 7px; font-size: 10px; font-weight: 800; }
 .status-badge.healthy { color: #9ee0c6; background: rgb(38 112 90 / 28%); }
 .status-badge.warning { color: #efc081; background: rgb(169 82 36 / 25%); }
